@@ -578,8 +578,8 @@ nav{
 }
 .svc-h2 em{color:var(--R);font-style:normal}
 .svc-tagline{
-  font-size:.92rem;color:rgba(10,10,10,.48);
-  font-style:italic;max-width:820px;line-height:1.8;
+  font-size:.95rem;color:rgba(10,10,10,.55);
+  max-width:820px;line-height:2.1;
 }
 .svc-tagline strong{color:var(--K);font-style:normal}
 .svc-grid{
@@ -596,12 +596,12 @@ nav{
 .svc-img-wrap{overflow:hidden;position:relative}
 .svc-photo{
   width:100%;aspect-ratio:4/3;object-fit:cover;
-  filter:grayscale(100%) contrast(1.1);
+  filter:none;
   transform:scale(1.1);
-  transition:transform .8s var(--ease-out-expo),filter .5s ease;
+  transition:transform .8s var(--ease-out-expo);
 }
 .svc-card:hover .svc-photo{
-  filter:grayscale(20%);transform:scale(1.04);
+  filter:none;transform:scale(1.04);
 }
 .svc-overlay{
   position:absolute;inset:0;background:rgba(60,60,255,.0);
@@ -653,20 +653,34 @@ nav{
   border:1px solid rgba(255,255,255,.1);
   padding:.88rem 1.2rem;margin-bottom:.45rem;
   font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(245,243,238,.65);font-weight:700;text-align:center;
+  color:rgba(245,243,238,.65);font-weight:700;text-align:left;
   position:relative;overflow:hidden;
-  transition:color .25s ease;
+  transition:color .25s ease,background .25s ease;
   cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:.5rem;
 }
 .pkg-item::before{
   content:'';position:absolute;inset:0;
-  background:rgba(255,255,255,.12);
+  background:rgba(255,255,255,.1);
   transform:scaleX(0);transform-origin:left;
   transition:transform .35s var(--ease-out-expo);
 }
 .pkg-item:hover::before{transform:scaleX(1)}
 .pkg-item:hover{color:#fff}
 .pkg-item.hl{background:rgba(255,255,255,.13);color:#fff}
+.pkg-item::after{
+  content:'→';
+  font-size:.9rem;font-weight:400;letter-spacing:0;
+  color:rgba(245,243,238,.28);flex-shrink:0;
+  transition:color .25s ease,transform .25s ease;
+}
+.pkg-item:hover::after{color:var(--C);transform:translateX(4px)}
+/* hint "saiba mais" abaixo do texto */
+.pkg-item-hint{
+  font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(245,243,238,.28);font-weight:400;
+  display:block;margin-top:.22rem;font-style:italic;
+}
 
 /* ── MODAL DE PACOTE ── */
 .pkg-modal-overlay{
@@ -677,10 +691,17 @@ nav{
 .pkg-modal-overlay.open{display:flex;animation:fadeIn .3s ease}
 .pkg-modal-box{
   background:#0e0e1a;border:1px solid rgba(60,60,255,.3);
-  border-radius:4px;width:min(640px,100%);max-height:85vh;
-  overflow-y:auto;padding:2.5rem;position:relative;
+  border-radius:4px;width:min(760px,100%);max-height:88vh;
+  overflow-y:scroll;overflow-x:hidden;
+  overscroll-behavior:contain;
+  padding:2.5rem;position:relative;
   animation:scaleIn .35s cubic-bezier(.16,1,.3,1) both;
+  scrollbar-width:thin;scrollbar-color:rgba(60,60,255,.4) transparent;
 }
+.pkg-modal-box::-webkit-scrollbar{width:4px}
+.pkg-modal-box::-webkit-scrollbar-track{background:transparent}
+.pkg-modal-box::-webkit-scrollbar-thumb{background:rgba(60,60,255,.4);border-radius:2px}
+.pkg-modal-box:focus{outline:none}
 @media(max-width:600px){.pkg-modal-box{padding:1.8rem 1.4rem}}
 .pkg-modal-close{
   position:absolute;top:1.2rem;right:1.4rem;
@@ -1261,28 +1282,28 @@ footer{
     <div class="pkg-cols">
       <div>
         <div class="pkg-col-title">GESTÃO</div>
-        <div class="pkg-item hl" onclick="openPkgModal('gestao-plus')">BRANDING + UHMANA</div>
-        <div class="pkg-item" onclick="openPkgModal('gestao-essencial')">DIREÇÃO + UHMANA</div>
-        <div class="pkg-item" onclick="openPkgModal('gestao-redes')">GESTÃO DE REDES SOCIAIS</div>
+        <div class="pkg-item hl" onclick="openPkgModal('gestao-plus')"><span>GESTÃO + UHMANA<small class="pkg-item-hint">clique para saber mais</small></span></div>
+        <div class="pkg-item" onclick="openPkgModal('gestao-essencial')"><span>DIREÇÃO + UHMANA<small class="pkg-item-hint">clique para saber mais</small></span></div>
+        <div class="pkg-item" onclick="openPkgModal('gestao-redes')"><span>GESTÃO DE REDES SOCIAIS<small class="pkg-item-hint">clique para saber mais</small></span></div>
         <img class="pkg-converse" src="media/converse.png" alt="Converse UHMANA">
       </div>
       <div>
         <div class="pkg-col-title">MARCAS</div>
-        <div class="pkg-item hl" onclick="openPkgModal('marcas-essencial')">ESSENCIAL</div>
-        <div class="pkg-item" onclick="openPkgModal('marcas-fastid')">FAST ID</div>
-        <div class="pkg-item" onclick="openPkgModal('marcas-expansao')">EXPANSÃO</div>
+        <div class="pkg-item hl" onclick="openPkgModal('marcas-essencial')"><span>IDENTIDADE VISUAL ESSENCIAL<small class="pkg-item-hint">clique para saber mais</small></span></div>
+        <div class="pkg-item" onclick="openPkgModal('marcas-fastid')"><span>FAST ID<small class="pkg-item-hint">clique para saber mais</small></span></div>
+        <div class="pkg-item" onclick="openPkgModal('marcas-expansao')"><span>EXPANSÃO<small class="pkg-item-hint">clique para saber mais</small></span></div>
       </div>
       <div>
         <div class="pkg-col-title">DESIGN</div>
-        <div class="pkg-item hl" onclick="openPkgModal('design-continua')">PACK EXPRESSÃO CONTÍNUA</div>
-        <div class="pkg-item" onclick="openPkgModal('design-digital')">PACK EXPRESSÃO DIGITAL</div>
-        <div class="pkg-item" onclick="openPkgModal('design-avulsas')">PEÇAS AVULSAS</div>
-        <div class="pkg-item" onclick="openPkgModal('design-ilustracoes')">ILUSTRAÇÕES</div>
+        <div class="pkg-item hl" onclick="openPkgModal('design-continua')"><span>EXPANSÃO CONTÍNUA<small class="pkg-item-hint">clique para saber mais</small></span></div>
+        <div class="pkg-item" onclick="openPkgModal('design-digital')"><span>EXPANSÃO DIGITAL<small class="pkg-item-hint">clique para saber mais</small></span></div>
+        <div class="pkg-item" onclick="openPkgModal('design-avulsas')"><span>PEÇAS AVULSAS<small class="pkg-item-hint">clique para saber mais</small></span></div>
+        <div class="pkg-item" onclick="openPkgModal('design-ilustracoes')"><span>ILUSTRAÇÕES<small class="pkg-item-hint">clique para saber mais</small></span></div>
       </div>
       <!-- CAMPANHAS -->
       <div>
         <div class="pkg-col-title">CAMPANHAS</div>
-        <div class="pkg-item" onclick="openPkgModal('campanhas')">CRIAÇÃO DE CAMPANHAS</div>
+        <div class="pkg-item" onclick="openPkgModal('campanhas')"><span>CRIAÇÃO DE CAMPANHAS<small class="pkg-item-hint">clique para saber mais</small></span></div>
       </div>
     </div>
     <div class="pkg-cta">
@@ -1857,7 +1878,7 @@ window.addEventListener('resize', () => ScrollTrigger.refresh());
 
 <!-- ══ MODAIS DOS PACOTES ══ -->
 <div class="pkg-modal-overlay" id="pkg-gestao-plus">
-  <div class="pkg-modal-box">
+  <div class="pkg-modal-box" tabindex="0">
     <button class="pkg-modal-close" onclick="closePkgModal('gestao-plus')">✕</button>
     <div class="pkg-modal-tag">Gestão</div>
     <div class="pkg-modal-title">GESTÃO + UHMANA</div>
@@ -1873,7 +1894,7 @@ window.addEventListener('resize', () => ScrollTrigger.refresh());
   </div>
 </div>
 <div class="pkg-modal-overlay" id="pkg-gestao-essencial">
-  <div class="pkg-modal-box">
+  <div class="pkg-modal-box" tabindex="0">
     <button class="pkg-modal-close" onclick="closePkgModal('gestao-essencial')">✕</button>
     <div class="pkg-modal-tag">Gestão</div>
     <div class="pkg-modal-title">DIREÇÃO + UHMANA</div>
@@ -1889,7 +1910,7 @@ window.addEventListener('resize', () => ScrollTrigger.refresh());
   </div>
 </div>
 <div class="pkg-modal-overlay" id="pkg-marcas-essencial">
-  <div class="pkg-modal-box">
+  <div class="pkg-modal-box" tabindex="0">
     <button class="pkg-modal-close" onclick="closePkgModal('marcas-essencial')">✕</button>
     <div class="pkg-modal-tag">Marcas</div>
     <div class="pkg-modal-title">IDENTIDADE VISUAL ESSENCIAL</div>
@@ -1912,7 +1933,7 @@ window.addEventListener('resize', () => ScrollTrigger.refresh());
   </div>
 </div>
 <div class="pkg-modal-overlay" id="pkg-marcas-fastid">
-  <div class="pkg-modal-box">
+  <div class="pkg-modal-box" tabindex="0">
     <button class="pkg-modal-close" onclick="closePkgModal('marcas-fastid')">✕</button>
     <div class="pkg-modal-tag">Marcas</div>
     <div class="pkg-modal-title">FAST ID</div>
@@ -1935,7 +1956,7 @@ window.addEventListener('resize', () => ScrollTrigger.refresh());
   </div>
 </div>
 <div class="pkg-modal-overlay" id="pkg-marcas-expansao">
-  <div class="pkg-modal-box">
+  <div class="pkg-modal-box" tabindex="0">
     <button class="pkg-modal-close" onclick="closePkgModal('marcas-expansao')">✕</button>
     <div class="pkg-modal-tag">Marcas</div>
     <div class="pkg-modal-title">EXPANSÃO</div>
@@ -1950,7 +1971,7 @@ window.addEventListener('resize', () => ScrollTrigger.refresh());
   </div>
 </div>
 <div class="pkg-modal-overlay" id="pkg-design-continua">
-  <div class="pkg-modal-box">
+  <div class="pkg-modal-box" tabindex="0">
     <button class="pkg-modal-close" onclick="closePkgModal('design-continua')">✕</button>
     <div class="pkg-modal-tag">Design</div>
     <div class="pkg-modal-title">EXPANSÃO CONTÍNUA</div>
@@ -1965,7 +1986,7 @@ window.addEventListener('resize', () => ScrollTrigger.refresh());
   </div>
 </div>
 <div class="pkg-modal-overlay" id="pkg-design-digital">
-  <div class="pkg-modal-box">
+  <div class="pkg-modal-box" tabindex="0">
     <button class="pkg-modal-close" onclick="closePkgModal('design-digital')">✕</button>
     <div class="pkg-modal-tag">Design</div>
     <div class="pkg-modal-title">EXPANSÃO DIGITAL</div>
@@ -1980,7 +2001,7 @@ window.addEventListener('resize', () => ScrollTrigger.refresh());
   </div>
 </div>
 <div class="pkg-modal-overlay" id="pkg-design-avulsas">
-  <div class="pkg-modal-box">
+  <div class="pkg-modal-box" tabindex="0">
     <button class="pkg-modal-close" onclick="closePkgModal('design-avulsas')">✕</button>
     <div class="pkg-modal-tag">Design</div>
     <div class="pkg-modal-title">PEÇAS AVULSAS</div>
@@ -1996,7 +2017,7 @@ window.addEventListener('resize', () => ScrollTrigger.refresh());
 </div>
 
 <div class="pkg-modal-overlay" id="pkg-design-ilustracoes">
-  <div class="pkg-modal-box">
+  <div class="pkg-modal-box" tabindex="0">
     <button class="pkg-modal-close" onclick="closePkgModal('design-ilustracoes')">✕</button>
     <div class="pkg-modal-tag">Design</div>
     <div class="pkg-modal-title">ILUSTRAÇÕES</div>
@@ -2012,7 +2033,7 @@ window.addEventListener('resize', () => ScrollTrigger.refresh());
 </div>
 
 <div class="pkg-modal-overlay" id="pkg-campanhas">
-  <div class="pkg-modal-box">
+  <div class="pkg-modal-box" tabindex="0">
     <button class="pkg-modal-close" onclick="closePkgModal('campanhas')">✕</button>
     <div class="pkg-modal-tag">Campanhas</div>
     <div class="pkg-modal-title">CRIAÇÃO DE CAMPANHAS</div>
@@ -2030,7 +2051,7 @@ window.addEventListener('resize', () => ScrollTrigger.refresh());
 
 <!-- GESTÃO REDES SOCIAIS -->
 <div class="pkg-modal-overlay" id="pkg-gestao-redes">
-  <div class="pkg-modal-box">
+  <div class="pkg-modal-box" tabindex="0">
     <button class="pkg-modal-close" onclick="closePkgModal('gestao-redes')">✕</button>
     <div class="pkg-modal-tag">Gestão</div>
     <div class="pkg-modal-title">GESTÃO DE REDES SOCIAIS</div>
@@ -2123,7 +2144,12 @@ window.addEventListener('resize', () => ScrollTrigger.refresh());
 /* ══ PACOTES MODAIS ══ */
 function openPkgModal(id){
   const m = document.getElementById('pkg-'+id);
-  if(m){ m.classList.add('open'); document.body.style.overflow='hidden'; }
+  if(m){
+    m.classList.add('open');
+    document.body.style.overflow='hidden';
+    // focar o modal box para scroll funcionar nele
+    setTimeout(()=>{ const box=m.querySelector('.pkg-modal-box'); if(box) box.focus(); },50);
+  }
 }
 function closePkgModal(id){
   const m = document.getElementById('pkg-'+id);

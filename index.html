@@ -321,6 +321,8 @@ nav{
   position:relative;z-index:2;opacity:0;
 }
 .hero-foot a{color:rgba(245,243,238,.38);transition:color .25s ease}
+.mob-br{display:none}
+@media(max-width:600px){.mob-br{display:block}}
 .hero-foot a:hover{color:var(--C)}
 @media(max-width:600px){
   /* badges mobile: 2 colunas, empilhadas naturalmente, com rotação leve em alguns */
@@ -401,7 +403,8 @@ nav{
 }
 .brands-track{
   display:flex;align-items:center;white-space:nowrap;
-  animation:tick 11s linear infinite;
+  animation:tick 18s linear infinite;
+  width:max-content;
 }
 .brands-track img{height:68px;flex-shrink:0;display:block}
 
@@ -573,7 +576,7 @@ nav{
 .svc-hdr .ey::before{background:var(--R)}
 .svc-h2{
   font-family:var(--fT);font-size:clamp(2.4rem,5vw,5rem);
-  line-height:.88;text-transform:uppercase;color:var(--K);
+  line-height:1.05;text-transform:uppercase;color:var(--K);
   margin-bottom:1rem;overflow:hidden;
 }
 .svc-h2 em{color:var(--R);font-style:normal}
@@ -727,7 +730,7 @@ nav{
 .pkg-modal-body ul{padding-left:1.1rem;margin-bottom:.8rem}
 .pkg-modal-body ul li{margin-bottom:.3rem}
 .pkg-modal-body p{margin-bottom:.7rem}
-.pkg-modal-body strong{color:var(--C)}
+.pkg-modal-body strong{color:#6e6eff}
 .pkg-modal-cta{
   margin-top:1.8rem;display:flex;justify-content:center;
 }
@@ -1031,6 +1034,7 @@ footer{
   font-size:.84rem;color:rgba(245,243,238,.85);line-height:1.8;
   font-style:italic;
 }
+.pkg-modal-tagline strong{color:#6e6eff}
 .pkg-modal-tagline{
   font-family:var(--fT);font-size:clamp(1.1rem,2.5vw,1.6rem);
   color:var(--C);letter-spacing:.02em;margin-bottom:1rem;line-height:1.1;
@@ -1144,7 +1148,7 @@ footer{
     <a href="https://wa.me/5548992101255" target="_blank" class="btn-oval">VAMOS CONVERSAR?</a>
   </div>
   <p class="hero-foot" id="hero-foot">
-    <em>Construímos comunicação que vive na marca, não só no feed.</em>
+    <em>Construímos comunicação que vive na marca,<br class="mob-br"> não só no feed.</em>
     &nbsp;&nbsp;
     <a href="https://instagram.com/agenciauhmana" target="_blank">@agenciauhmana</a>
   </p>
@@ -1165,6 +1169,8 @@ footer{
 <!-- BRANDS BAND -->
 <div class="brands-band">
   <div class="brands-track">
+    <img src="media/brands.png" alt=""><img src="media/brands.png" alt="">
+    <img src="media/brands.png" alt=""><img src="media/brands.png" alt="">
     <img src="media/brands.png" alt=""><img src="media/brands.png" alt="">
     <img src="media/brands.png" alt=""><img src="media/brands.png" alt="">
   </div>
